@@ -11,8 +11,8 @@ futures = "=0.3.17"
 grpc = "=0.8.3"
 grpc-compiler = "=0.8.3"
 grpc-protobuf = "=0.8.3"
-protobuf = { version = "=2.18.2", features = ["with-bytes"] }
-protobuf-codegen = "=2.18.2"
+protobuf = { version = "=3.1.0", features = ["with-bytes"] }
+protobuf-codegen = "=3.1.0"
 
 # For routeguide example
 json = "=0.12.4"
