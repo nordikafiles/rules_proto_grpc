@@ -1,0 +1,89 @@
+"""
+@generated
+cargo-raze crate build file.
+
+DO NOT EDIT! Replaced on runs of cargo-raze
+"""
+
+# buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
+load(
+    "@rules_rust//rust:defs.bzl",
+    "rust_binary",
+    "rust_library",
+    "rust_proc_macro",
+    "rust_test",
+)
+
+package(default_visibility = [
+    # Public for visibility by "@raze__crate__version//" targets.
+    #
+    # Prefer access through "//rust/raze", which limits external
+    # visibility to explicit Cargo.toml dependencies.
+    "//visibility:public",
+])
+
+licenses([
+    "notice",  # MIT from expression "MIT"
+])
+
+# Generated Targets
+
+rust_binary(
+    # Prefix bin name to disambiguate from (probable) collision with lib name
+    # N.B.: The exact form of this is subject to change.
+    name = "cargo_bin_protoc_gen_rust",
+    srcs = glob(["**/*.rs"]),
+    crate_root = "src/bin/protoc-gen-rust.rs",
+    data = [],
+    edition = "2021",
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    tags = [
+        "cargo-raze",
+        "crate-name=protoc-gen-rust",
+        "manual",
+    ],
+    version = "3.1.0",
+    # buildifier: leave-alone
+    deps = [
+        ":protobuf_codegen",
+        "@raze__anyhow__1_0_58//:anyhow",
+        "@raze__once_cell__1_13_0//:once_cell",
+        "@raze__protobuf__3_1_0//:protobuf",
+        "@raze__protobuf_parse__3_1_0//:protobuf_parse",
+        "@raze__regex__1_6_0//:regex",
+        "@raze__tempfile__3_3_0//:tempfile",
+        "@raze__thiserror__1_0_31//:thiserror",
+    ],
+)
+
+rust_library(
+    name = "protobuf_codegen",
+    srcs = glob(["**/*.rs"]),
+    crate_root = "src/lib.rs",
+    data = [],
+    edition = "2021",
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    tags = [
+        "cargo-raze",
+        "crate-name=protobuf-codegen",
+        "manual",
+    ],
+    version = "3.1.0",
+    # buildifier: leave-alone
+    deps = [
+        "@raze__anyhow__1_0_58//:anyhow",
+        "@raze__once_cell__1_13_0//:once_cell",
+        "@raze__protobuf__3_1_0//:protobuf",
+        "@raze__protobuf_parse__3_1_0//:protobuf_parse",
+        "@raze__regex__1_6_0//:regex",
+        "@raze__tempfile__3_3_0//:tempfile",
+        "@raze__thiserror__1_0_31//:thiserror",
+    ],
+)

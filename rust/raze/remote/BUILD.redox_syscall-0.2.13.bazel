@@ -26,16 +26,23 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0 OR MIT"
+    "notice",  # MIT from expression "MIT"
 ])
 
 # Generated Targets
 
-rust_library(
-    name = "pin_project_lite",
-    srcs = glob(["**/*.rs"]),
-    crate_features = [
+alias(
+    name = "redox_syscall",
+    actual = ":syscall",
+    tags = [
+        "cargo-raze",
+        "manual",
     ],
+)
+
+rust_library(
+    name = "syscall",
+    srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
     data = [],
     edition = "2018",
@@ -44,22 +51,12 @@ rust_library(
     ],
     tags = [
         "cargo-raze",
+        "crate-name=syscall",
         "manual",
     ],
-    version = "0.2.7",
+    version = "0.2.13",
     # buildifier: leave-alone
     deps = [
+        "@raze__bitflags__1_3_2//:bitflags",
     ],
 )
-
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "drop_order" with type "test" omitted
-
-# Unsupported target "expandtest" with type "test" omitted
-
-# Unsupported target "lint" with type "test" omitted
-
-# Unsupported target "proper_unpin" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted

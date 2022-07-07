@@ -32,12 +32,8 @@ licenses([
 # Generated Targets
 
 rust_library(
-    name = "futures_sink",
+    name = "futures_io",
     srcs = glob(["**/*.rs"]),
-    crate_features = [
-        "alloc",
-        "std",
-    ],
     crate_root = "src/lib.rs",
     data = [],
     edition = "2018",
@@ -46,9 +42,10 @@ rust_library(
     ],
     tags = [
         "cargo-raze",
+        "crate-name=futures-io",
         "manual",
     ],
-    version = "0.3.18",
+    version = "0.3.21",
     # buildifier: leave-alone
     deps = [
     ],

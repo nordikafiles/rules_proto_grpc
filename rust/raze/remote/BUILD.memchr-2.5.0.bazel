@@ -26,7 +26,7 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "unencumbered",  # Unlicense from expression "Unlicense OR MIT"
 ])
 
 # Generated Targets
@@ -38,16 +38,10 @@ load(
 )
 
 cargo_build_script(
-    name = "futures_channel_build_script",
+    name = "memchr_build_script",
     srcs = glob(["**/*.rs"]),
     build_script_env = {
     },
-    crate_features = [
-        "alloc",
-        "futures-sink",
-        "sink",
-        "std",
-    ],
     crate_root = "build.rs",
     data = glob(["**"]),
     edition = "2018",
@@ -58,23 +52,15 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "0.3.18",
+    version = "2.5.0",
     visibility = ["//visibility:private"],
     deps = [
     ],
 )
 
-# Unsupported target "sync_mpsc" with type "bench" omitted
-
 rust_library(
-    name = "futures_channel",
+    name = "memchr",
     srcs = glob(["**/*.rs"]),
-    crate_features = [
-        "alloc",
-        "futures-sink",
-        "sink",
-        "std",
-    ],
     crate_root = "src/lib.rs",
     data = [],
     edition = "2018",
@@ -83,21 +69,12 @@ rust_library(
     ],
     tags = [
         "cargo-raze",
+        "crate-name=memchr",
         "manual",
     ],
-    version = "0.3.18",
+    version = "2.5.0",
     # buildifier: leave-alone
     deps = [
-        ":futures_channel_build_script",
-        "@raze__futures_core__0_3_18//:futures_core",
-        "@raze__futures_sink__0_3_18//:futures_sink",
+        ":memchr_build_script",
     ],
 )
-
-# Unsupported target "channel" with type "test" omitted
-
-# Unsupported target "mpsc" with type "test" omitted
-
-# Unsupported target "mpsc-close" with type "test" omitted
-
-# Unsupported target "oneshot" with type "test" omitted

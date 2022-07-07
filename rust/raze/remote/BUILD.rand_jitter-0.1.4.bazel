@@ -38,9 +38,6 @@ rust_library(
     srcs = glob(["**/*.rs"]),
     aliases = {
     },
-    crate_features = [
-        "std",
-    ],
     crate_root = "src/lib.rs",
     data = [],
     edition = "2015",
@@ -49,6 +46,7 @@ rust_library(
     ],
     tags = [
         "cargo-raze",
+        "crate-name=rand_jitter",
         "manual",
     ],
     version = "0.1.4",
@@ -56,19 +54,18 @@ rust_library(
     deps = [
         "@raze__rand_core__0_4_2//:rand_core",
     ] + selects.with_or({
-        # cfg(any(target_os = "macos", target_os = "ios"))
         (
             "@rules_rust//rust/platform:i686-apple-darwin",
             "@rules_rust//rust/platform:x86_64-apple-darwin",
             "@rules_rust//rust/platform:aarch64-apple-darwin",
             "@rules_rust//rust/platform:aarch64-apple-ios",
+            "@rules_rust//rust/platform:aarch64-apple-ios-sim",
             "@rules_rust//rust/platform:x86_64-apple-ios",
         ): [
-            "@raze__libc__0_2_108//:libc",
+            "@raze__libc__0_2_126//:libc",
         ],
         "//conditions:default": [],
     }) + selects.with_or({
-        # cfg(target_os = "windows")
         (
             "@rules_rust//rust/platform:i686-pc-windows-msvc",
             "@rules_rust//rust/platform:x86_64-pc-windows-msvc",

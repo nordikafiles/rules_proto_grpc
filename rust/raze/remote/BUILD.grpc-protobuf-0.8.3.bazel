@@ -34,8 +34,6 @@ licenses([
 rust_library(
     name = "grpc_protobuf",
     srcs = glob(["**/*.rs"]),
-    crate_features = [
-    ],
     crate_root = "src/lib.rs",
     data = [],
     edition = "2018",
@@ -44,6 +42,7 @@ rust_library(
     ],
     tags = [
         "cargo-raze",
+        "crate-name=grpc-protobuf",
         "manual",
     ],
     version = "0.8.3",

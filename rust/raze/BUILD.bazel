@@ -68,7 +68,7 @@ alias(
 
 alias(
     name = "protobuf",
-    actual = "@raze__protobuf__2_18_2//:protobuf",
+    actual = "@raze__protobuf__3_1_0//:protobuf",
     tags = [
         "cargo-raze",
         "manual",
@@ -94,6 +94,24 @@ alias(
 )
 
 alias(
+    name = "cargo_bin_protoc_gen_rust",
+    actual = "@raze__protobuf_codegen__3_1_0//:cargo_bin_protoc_gen_rust",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "protobuf_codegen",
+    actual = "@raze__protobuf_codegen__3_1_0//:protobuf_codegen",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
     name = "rand",
     actual = "@raze__rand__0_6_5//:rand",
     tags = [
@@ -104,8 +122,18 @@ alias(
 
 # Export file for Stardoc support
 exports_files(
-    [
-        "crates.bzl",
-    ],
+    glob([
+        "**/*.bazel",
+        "**/*.bzl",
+    ]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "**/*.bazel",
+        "**/*.bzl",
+    ]),
     visibility = ["//visibility:public"],
 )
